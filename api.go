@@ -264,7 +264,7 @@ func (dex *DexClient) GasPrice(params *GasPriceRequest) (*GasPriceResponse, erro
 	return data[0], nil
 }
 
-func (dex *DexClient) CurrentPrice(payload []*CurrentPriceRequest) (*CurrentPriceResponse, error) {
+func (dex *DexClient) CurrentPrice(payload []*CurrentPriceRequest) ([]*CurrentPriceResponse, error) {
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   POST,
 		Endpoint: "/api/v5/dex/index/current-price",
@@ -277,7 +277,7 @@ func (dex *DexClient) CurrentPrice(payload []*CurrentPriceRequest) (*CurrentPric
 	if err != nil {
 		return nil, err
 	}
-	return data[0], nil
+	return data, nil
 }
 
 func (dex *DexClient) AllTokenBalanceByAddress(params *AllTokenBalanceByAddressRequest) (*AllTokenBalanceByAddressResponse, error) {
