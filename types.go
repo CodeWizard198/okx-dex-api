@@ -381,7 +381,7 @@ type TransactionByAddressRequest struct {
 }
 
 type TransactionByAddressResponse struct {
-	Cursor          string `json:"cursor"`
+	Cursor       string `json:"cursor"`
 	Transactions []struct {
 		ChainIndex string `json:"chainIndex"`
 		TxHash     string `json:"txHash"`
@@ -405,4 +405,109 @@ type TransactionByAddressResponse struct {
 		Tag                  string `json:"tag"`
 		Itype                string `json:"itype"`
 	} `json:"transactions"`
+}
+
+type MarketTokenSearchRequest struct {
+	Chains string `json:"chains"`
+	Search string `json:"search"`
+}
+
+type MarketTokenSearchResponse struct {
+	ChainIndex  string `json:"chainIndex"`
+	Change      string `json:"change"`
+	Decimal     string `json:"decimal"`
+	ExplorerUrl string `json:"explorerUrl"`
+	Holders     string `json:"holders"`
+	Liquidity   string `json:"liquidity"`
+	MarketCap   string `json:"marketCap"`
+	Price       string `json:"price"`
+	TagList     struct {
+		CommunityRecognized bool `json:"communityRecognized"`
+	} `json:"tagList"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+	TokenLogoUrl         string `json:"tokenLogoUrl"`
+	TokenName            string `json:"tokenName"`
+	TokenSymbol          string `json:"tokenSymbol"`
+}
+
+type MarketTokenBasicInfoRequest struct {
+	ChainIndex           string `json:"chainIndex"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+}
+
+type MarketTokenBasicInfoResponse struct {
+	ChainIndex string `json:"chainIndex"`
+	Decimal    string `json:"decimal"`
+	TagList    struct {
+		CommunityRecognized bool `json:"communityRecognized"`
+	} `json:"tagList"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+	TokenLogoUrl         string `json:"tokenLogoUrl"`
+	TokenName            string `json:"tokenName"`
+	TokenSymbol          string `json:"tokenSymbol"`
+}
+
+type MarketPriceInfoRequest struct {
+	ChainIndex           string `json:"chainIndex"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+}
+
+type MarketPriceInfoResponse struct {
+	ChainIndex           string `json:"chainIndex"`
+	CircSupply           string `json:"circSupply"`
+	Holders              string `json:"holders"`
+	Liquidity            string `json:"liquidity"`
+	MarketCap            string `json:"marketCap"`
+	MaxPrice             string `json:"maxPrice"`
+	MinPrice             string `json:"minPrice"`
+	Price                string `json:"price"`
+	PriceChange1H        string `json:"priceChange1H"`
+	PriceChange24H       string `json:"priceChange24H"`
+	PriceChange4H        string `json:"priceChange4H"`
+	PriceChange5M        string `json:"priceChange5M"`
+	Time                 string `json:"time"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+	TradeNum             string `json:"tradeNum"`
+	Txs1H                string `json:"txs1H"`
+	Txs24H               string `json:"txs24H"`
+	Txs4H                string `json:"txs4H"`
+	Txs5M                string `json:"txs5M"`
+	Volume1H             string `json:"volume1H"`
+	Volume24H            string `json:"volume24H"`
+	Volume4H             string `json:"volume4H"`
+	Volume5M             string `json:"volume5M"`
+}
+
+type MarketTokenToplistRequest struct {
+	Chains    string `json:"chains"`
+	SortBy    string `json:"sortBy"`
+	TimeFrame string `json:"timeFrame"`
+}
+
+type MarketTokenToplistResponse struct {
+	ChainIndex           string `json:"chainIndex"`
+	Change               string `json:"change"`
+	FirstTradeTime       string `json:"firstTradeTime"`
+	Holders              string `json:"holders"`
+	Liquidity            string `json:"liquidity"`
+	MarketCap            string `json:"marketCap"`
+	Price                string `json:"price"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+	TokenLogoUrl         string `json:"tokenLogoUrl"`
+	TokenSymbol          string `json:"tokenSymbol"`
+	Txs                  string `json:"txs"`
+	TxsBuy               string `json:"txsBuy"`
+	TxsSell              string `json:"txsSell"`
+	UniqueTraders        string `json:"uniqueTraders"`
+	Volume               string `json:"volume"`
+}
+
+type MarketTokenHolderRequest struct {
+	ChainIndex           string `json:"chainIndex"`
+	TokenContractAddress string `json:"tokenContractAddress"`
+}
+
+type MarketTokenHolderResponse struct {
+	HoldAmount          string `json:"holdAmount"`
+	HolderWalletAddress string `json:"holderWalletAddress"`
 }

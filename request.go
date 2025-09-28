@@ -16,7 +16,12 @@ type IType interface {
 		~[]*CurrentPriceResponse |
 		~[]*AllTokenBalanceByAddressResponse |
 		~[]*TokenBalanceByAddressResponse |
-		~[]*TransactionByAddressResponse
+		~[]*TransactionByAddressResponse |
+		~[]*MarketTokenSearchResponse |
+		~[]*MarketTokenBasicInfoResponse |
+		~[]*MarketPriceInfoResponse |
+		[]*MarketTokenToplistResponse |
+		[]*MarketTokenHolderResponse
 }
 
 func doRequest[T IType](client *http.Client, req *http.Request) (T, error) {

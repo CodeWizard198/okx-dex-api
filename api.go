@@ -363,3 +363,93 @@ func (dex *DexClient) TransactionByAddress(params *TransactionByAddressRequest) 
 	}
 	return data[0], nil
 }
+
+func (dex *DexClient) MarketTokenSearch(params *MarketTokenSearchRequest) ([]*MarketTokenSearchResponse, error) {
+	requestParams := map[string]any{}
+
+	if params.Chains != "" {
+		requestParams["chains"] = params.Chains
+	}
+	if params.Search != "" {
+		requestParams["search"] = params.Search
+	}
+
+	req, err := dex.prepareRequest(RequestParameters{
+		Method:   GET,
+		Endpoint: "/api/v6/dex/market/token/search",
+		Params:   requestParams,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return doRequest[[]*MarketTokenSearchResponse](dex.httpClient, req)
+}
+
+func (dex *DexClient) MarketTokenBasicInfo(payload []*MarketTokenBasicInfoRequest) ([]*MarketTokenBasicInfoResponse, error) {
+	req, err := dex.prepareRequest(RequestParameters{
+		Method:   POST,
+		Endpoint: "/api/v6/dex/market/token/basic-info",
+		Body:     payload,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return doRequest[[]*MarketTokenBasicInfoResponse](dex.httpClient, req)
+}
+
+func (dex *DexClient) MarketPriceInfo(payload []*MarketPriceInfoRequest) ([]*MarketPriceInfoResponse, error) {
+	req, err := dex.prepareRequest(RequestParameters{
+		Method:   POST,
+		Endpoint: "/api/v6/dex/market/price-info",
+		Body:     payload,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return doRequest[[]*MarketPriceInfoResponse](dex.httpClient, req)
+}
+
+func (dex *DexClient) MarketTokenToplist(params *MarketTokenToplistRequest) ([]*MarketTokenToplistResponse, error) {
+	requestParams := map[string]any{}
+
+	if params.Chains != "" {
+		requestParams["chains"] = params.Chains
+	}
+	if params.SortBy != "" {
+		requestParams["sortBy"] = params.SortBy
+	}
+	if params.TimeFrame != "" {
+		requestParams["timeFrame"] = params.TimeFrame
+	}
+
+	req, err := dex.prepareRequest(RequestParameters{
+		Method:   GET,
+		Endpoint: "/api/v6/dex/market/token/toplist",
+		Params:   requestParams,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return doRequest[[]*MarketTokenToplistResponse](dex.httpClient, req)
+}
+
+func (dex *DexClient) MarketTokenHolder(params *MarketTokenHolderRequest) ([]*MarketTokenHolderResponse, error) {
+	requestParams := map[string]any{}
+
+	if params.ChainIndex != "" {
+		requestParams["chainIndex"] = params.ChainIndex
+	}
+	if params.TokenContractAddress != "" {
+		requestParams["tokenContractAddress"] = params.TokenContractAddress
+	}
+
+	req, err := dex.prepareRequest(RequestParameters{
+		Method:   GET,
+		Endpoint: "/api/v6/dex/market/token/holder",
+		Params:   requestParams,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return doRequest[[]*MarketTokenHolderResponse](dex.httpClient, req)
+}
