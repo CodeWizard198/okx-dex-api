@@ -126,33 +126,31 @@ type SwapInstructionResponse struct {
 		ProgramId string `json:"programId"`
 	} `json:"instructionLists"`
 	RouterResult struct {
-		ChainId       string `json:"chainId"`
 		ChainIndex    string `json:"chainIndex"`
+		ContextSlot   int    `json:"contextSlot"`
 		DexRouterList []struct {
-			Router        string `json:"router"`
-			RouterPercent string `json:"routerPercent"`
-			SubRouterList []struct {
-				DexProtocol []struct {
-					DexName string `json:"dexName"`
-					Percent string `json:"percent"`
-				} `json:"dexProtocol"`
-				FromToken struct {
-					Decimal              string `json:"decimal"`
-					IsHoneyPot           bool   `json:"isHoneyPot"`
-					TaxRate              string `json:"taxRate"`
-					TokenContractAddress string `json:"tokenContractAddress"`
-					TokenSymbol          string `json:"tokenSymbol"`
-					TokenUnitPrice       string `json:"tokenUnitPrice"`
-				} `json:"fromToken"`
-				ToToken struct {
-					Decimal              string `json:"decimal"`
-					IsHoneyPot           bool   `json:"isHoneyPot"`
-					TaxRate              string `json:"taxRate"`
-					TokenContractAddress string `json:"tokenContractAddress"`
-					TokenSymbol          string `json:"tokenSymbol"`
-					TokenUnitPrice       string `json:"tokenUnitPrice"`
-				} `json:"toToken"`
-			} `json:"subRouterList"`
+			DexProtocol struct {
+				DexName string `json:"dexName"`
+				Percent string `json:"percent"`
+			} `json:"dexProtocol"`
+			FromToken struct {
+				Decimal              string `json:"decimal"`
+				IsHoneyPot           bool   `json:"isHoneyPot"`
+				TaxRate              string `json:"taxRate"`
+				TokenContractAddress string `json:"tokenContractAddress"`
+				TokenSymbol          string `json:"tokenSymbol"`
+				TokenUnitPrice       string `json:"tokenUnitPrice"`
+			} `json:"fromToken"`
+			FromTokenIndex string `json:"fromTokenIndex"`
+			ToToken        struct {
+				Decimal              string `json:"decimal"`
+				IsHoneyPot           bool   `json:"isHoneyPot"`
+				TaxRate              string `json:"taxRate"`
+				TokenContractAddress string `json:"tokenContractAddress"`
+				TokenSymbol          string `json:"tokenSymbol"`
+				TokenUnitPrice       string `json:"tokenUnitPrice"`
+			} `json:"toToken"`
+			ToTokenIndex string `json:"toTokenIndex"`
 		} `json:"dexRouterList"`
 		EstimateGasFee string `json:"estimateGasFee"`
 		FromToken      struct {
@@ -163,16 +161,11 @@ type SwapInstructionResponse struct {
 			TokenSymbol          string `json:"tokenSymbol"`
 			TokenUnitPrice       string `json:"tokenUnitPrice"`
 		} `json:"fromToken"`
-		FromTokenAmount       string `json:"fromTokenAmount"`
-		PriceImpactPercentage string `json:"priceImpactPercentage"`
-		QuoteCompareList      []struct {
-			AmountOut string `json:"amountOut"`
-			DexLogo   string `json:"dexLogo"`
-			DexName   string `json:"dexName"`
-			TradeFee  string `json:"tradeFee"`
-		} `json:"quoteCompareList"`
-		SwapMode string `json:"swapMode"`
-		ToToken  struct {
+		FromTokenAmount    string `json:"fromTokenAmount"`
+		PriceImpactPercent string `json:"priceImpactPercent"`
+		Router             string `json:"router"`
+		SwapMode           string `json:"swapMode"`
+		ToToken            struct {
 			Decimal              string `json:"decimal"`
 			IsHoneyPot           bool   `json:"isHoneyPot"`
 			TaxRate              string `json:"taxRate"`
@@ -186,7 +179,7 @@ type SwapInstructionResponse struct {
 	Tx struct {
 		From             string `json:"from"`
 		MinReceiveAmount string `json:"minReceiveAmount"`
-		Slippage         string `json:"slippage"`
+		SlippagePercent  string `json:"slippagePercent"`
 		To               string `json:"to"`
 	} `json:"tx"`
 }
