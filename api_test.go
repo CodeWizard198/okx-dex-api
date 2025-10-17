@@ -108,3 +108,21 @@ func TestTransactionByAddress(t *testing.T) {
 	}
 	t.Logf("Transactions response: %+v", transactions)
 }
+
+func TestDexClient_SwapInstruction(t *testing.T) {
+	_, err := dexClient.SwapInstruction(&okxdexapi.SwapInstructionRequest{
+		ChainIndex:                   "501",
+		Amount:                       "18140000",
+		FromTokenAddress:             "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+		ToTokenAddress:               "11111111111111111111111111111111",
+		UserWalletAddress:            os.Getenv("WALLET_ADDRESS"),
+		SwapReceiverAddress:          os.Getenv("WALLET_ADDRESS"),
+		ToTokenReferrerWalletAddress: os.Getenv("FEE_WALLET_ADDRESS"),
+		FeePercent:                   "1",
+		AutoSlippage:                 true,
+		SlippagePercent:              "5",
+	})
+	if err != nil {
+		t.Logf("Failed to swap instruction: %v", err)
+	}
+}

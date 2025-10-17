@@ -15,7 +15,7 @@ func (dex *DexClient) ApproveTransaction(params *ApproveTransactionRequest) (*Ap
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/aggregator/approve-transaction",
+		Endpoint: "/api/v6/dex/aggregator/approve-transaction",
 		Params:   requestParams,
 	})
 	if err != nil {
@@ -59,7 +59,7 @@ func (dex *DexClient) Quote(params *QuoteRequest) (*QuoteResponse, error) {
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/aggregator/quote",
+		Endpoint: "/api/v6/dex/aggregator/quote",
 		Params:   requestParams,
 	})
 	if err != nil {
@@ -87,8 +87,8 @@ func (dex *DexClient) SwapInstruction(params *SwapInstructionRequest) (*SwapInst
 	if params.ToTokenAddress != "" {
 		requestParams["toTokenAddress"] = params.ToTokenAddress
 	}
-	if params.Slippage != "" {
-		requestParams["slippage"] = params.Slippage
+	if params.SlippagePercent != "" {
+		requestParams["slippagePercent"] = params.SlippagePercent
 	}
 	requestParams["autoSlippage"] = params.AutoSlippage
 	if params.MaxAutoSlippage != "" {
@@ -137,7 +137,7 @@ func (dex *DexClient) SwapInstruction(params *SwapInstructionRequest) (*SwapInst
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/aggregator/swap-instruction",
+		Endpoint: "/api/v6/dex/aggregator/swap-instruction",
 		Params:   requestParams,
 	})
 	if err != nil {
@@ -229,7 +229,7 @@ func (dex *DexClient) Swap(params *SwapRequest) (*SwapResponse, error) {
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/aggregator/swap",
+		Endpoint: "/api/v6/dex/aggregator/swap",
 		Params:   requestParams,
 	})
 	if err != nil {
@@ -267,7 +267,7 @@ func (dex *DexClient) GasPrice(params *GasPriceRequest) (*GasPriceResponse, erro
 func (dex *DexClient) CurrentPrice(payload []*CurrentPriceRequest) ([]*CurrentPriceResponse, error) {
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   POST,
-		Endpoint: "/api/v5/dex/index/current-price",
+		Endpoint: "/api/v6/dex/index/current-price",
 		Body:     payload,
 	})
 	if err != nil {
@@ -295,7 +295,7 @@ func (dex *DexClient) AllTokenBalanceByAddress(params *AllTokenBalanceByAddressR
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/balance/all-token-balances-by-address",
+		Endpoint: "/api/v6/dex/balance/all-token-balances-by-address",
 		Params:   requestParams,
 	})
 	if err != nil {
@@ -311,7 +311,7 @@ func (dex *DexClient) AllTokenBalanceByAddress(params *AllTokenBalanceByAddressR
 func (dex *DexClient) TokenBalanceByAddress(payload *TokenBalanceByAddressRequest) (*TokenBalanceByAddressResponse, error) {
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   POST,
-		Endpoint: "/api/v5/dex/balance/token-balances-by-address",
+		Endpoint: "/api/v6/dex/balance/token-balances-by-address",
 		Body:     payload,
 	})
 	if err != nil {
@@ -351,7 +351,7 @@ func (dex *DexClient) TransactionByAddress(params *TransactionByAddressRequest) 
 
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/post-transaction/transactions-by-address",
+		Endpoint: "/api/v6/dex/post-transaction/transactions-by-address",
 		Params:   requestParams,
 	})
 	if err != nil {

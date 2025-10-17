@@ -32,6 +32,9 @@ func doRequest[T IType](client *http.Client, req *http.Request) (T, error) {
 	defer resp.Body.Close()
 
 	var response BaseResponse[T]
+	//bodyBytes, _ := io.ReadAll(resp.Body)
+	//fmt.Println(string(bodyBytes))
+	//return nil, nil
 	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
 		return nil, fmt.Errorf("decode response body failed: %w", err)
 	}

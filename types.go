@@ -95,7 +95,7 @@ type SwapInstructionRequest struct {
 	Amount                          string `json:"amount"`
 	FromTokenAddress                string `json:"fromTokenAddress"`
 	ToTokenAddress                  string `json:"toTokenAddress"`
-	Slippage                        string `json:"slippage"`
+	SlippagePercent                 string `json:"slippagePercent"`
 	AutoSlippage                    bool   `json:"autoSlippage"`
 	MaxAutoSlippage                 string `json:"maxAutoSlippage"`
 	UserWalletAddress               string `json:"userWalletAddress"`
