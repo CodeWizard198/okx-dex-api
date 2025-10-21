@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 )
 
 type IType interface {
@@ -26,6 +27,9 @@ type IType interface {
 }
 
 func doRequest[T IType](client *http.Client, req *http.Request) (T, error) {
+	if os.Getenv("debug") == "1" {
+		fmt.Println(req.URL.String())
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("http request failed: %w", err)
