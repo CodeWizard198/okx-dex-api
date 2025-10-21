@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -31,12 +32,25 @@ func doRequest[T IType](client *http.Client, req *http.Request) (T, error) {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		bodyBytes, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.New(string(bodyBytes))
+	}
+
+	bodyBytes, _ := io.ReadAll(resp.Body)
+	// fmt.Println(string(bodyBytes))
+	// return nil, nil
+
 	var response BaseResponse[T]
-	//bodyBytes, _ := io.ReadAll(resp.Body)
-	//fmt.Println(string(bodyBytes))
-	//return nil, nil
-	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
-		return nil, fmt.Errorf("decode response body failed: %w", err)
+
+	// if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
+	// 	return nil, fmt.Errorf("decode response body failed: %w", err)
+	// }
+	if err := json.Unmarshal(bodyBytes, &response); err != nil {
+		return nil, errors.New(string(bodyBytes))
 	}
 
 	if Code(response.Code) != SuccessCode {
