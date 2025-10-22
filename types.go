@@ -186,12 +186,11 @@ type SwapInstructionResponse struct {
 
 type SwapRequest struct {
 	ChainIndex                      string `json:"chainIndex"`
-	ChainId                         string `json:"chainId"`
 	Amount                          string `json:"amount"`
 	SwapMode                        string `json:"swapMode"`
 	FromTokenAddress                string `json:"fromTokenAddress"`
 	ToTokenAddress                  string `json:"toTokenAddress"`
-	Slippage                        string `json:"slippage"`
+	SlippagePercent                 string `json:"slippagePercent"`
 	UserWalletAddress               string `json:"userWalletAddress"`
 	SwapReceiverAddress             string `json:"swapReceiverAddress"`
 	FeePercent                      string `json:"feePercent"`

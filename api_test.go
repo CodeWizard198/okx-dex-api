@@ -79,7 +79,7 @@ func TestAllTokenBalanceByAddress(t *testing.T) {
 
 func TestGasPrice(t *testing.T) {
 	gasPriceResponse, err := dexClient.GasPrice(&okxdexapi.GasPriceRequest{
-		ChainIndex: "156",
+		ChainIndex: "1",
 	})
 	if err != nil {
 		t.Fatalf("Failed to get gas price: %v", err)
@@ -134,5 +134,21 @@ func TestDexClient_SwapInstruction(t *testing.T) {
 	})
 	if err != nil {
 		t.Logf("Failed to swap instruction: %v", err)
+	}
+}
+
+func TestDexClient_Swap(t *testing.T) {
+	_, err := dexClient.Swap(&okxdexapi.SwapRequest{
+		ChainIndex:          "56",
+		Amount:              "10000000000000",
+		SwapMode:            "exactIn",
+		FromTokenAddress:    "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+		ToTokenAddress:      "0x55d398326f99059ff775485246999027b3197955",
+		UserWalletAddress:   "0xF292825F025c57D9AD90F15263735B06C2630867",
+		SwapReceiverAddress: "0xF292825F025c57D9AD90F15263735B06C2630867",
+		SlippagePercent:     "5",
+	})
+	if err != nil {
+		t.Logf("Failed to swap: %v", err)
 	}
 }

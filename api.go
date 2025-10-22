@@ -1,22 +1,12 @@
 package okxdexapi
 
+import "fmt"
+
 func (dex *DexClient) ApproveTransaction(params *ApproveTransactionRequest) (*ApproveTransactionResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-	if params.TokenContractAddress != "" {
-		requestParams["tokenContractAddress"] = params.TokenContractAddress
-	}
-	if params.ApproveAmount != "" {
-		requestParams["approveAmount"] = params.ApproveAmount
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/aggregator/approve-transaction",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -29,38 +19,10 @@ func (dex *DexClient) ApproveTransaction(params *ApproveTransactionRequest) (*Ap
 }
 
 func (dex *DexClient) Quote(params *QuoteRequest) (*QuoteResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-	if params.Amount != "" {
-		requestParams["amount"] = params.Amount
-	}
-	if params.SwapMode != "" {
-		requestParams["swapMode"] = params.SwapMode
-	}
-	if params.FromTokenAddress != "" {
-		requestParams["fromTokenAddress"] = params.FromTokenAddress
-	}
-	if params.ToTokenAddress != "" {
-		requestParams["toTokenAddress"] = params.ToTokenAddress
-	}
-	if params.DexIds != "" {
-		requestParams["dexIds"] = params.DexIds
-	}
-	requestParams["directRoute"] = params.DirectRoute
-	if params.PriceImpactProtectionPercentage != "" {
-		requestParams["priceImpactProtectionPercentage"] = params.PriceImpactProtectionPercentage
-	}
-	if params.FeePercent != "" {
-		requestParams["feePercent"] = params.FeePercent
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/aggregator/quote",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -73,72 +35,10 @@ func (dex *DexClient) Quote(params *QuoteRequest) (*QuoteResponse, error) {
 }
 
 func (dex *DexClient) SwapInstruction(params *SwapInstructionRequest) (*SwapInstructionResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-	if params.Amount != "" {
-		requestParams["amount"] = params.Amount
-	}
-	if params.FromTokenAddress != "" {
-		requestParams["fromTokenAddress"] = params.FromTokenAddress
-	}
-	if params.ToTokenAddress != "" {
-		requestParams["toTokenAddress"] = params.ToTokenAddress
-	}
-	if params.SlippagePercent != "" {
-		requestParams["slippagePercent"] = params.SlippagePercent
-	}
-	requestParams["autoSlippage"] = params.AutoSlippage
-	if params.MaxAutoSlippage != "" {
-		requestParams["maxAutoSlippage"] = params.MaxAutoSlippage
-	}
-	if params.UserWalletAddress != "" {
-		requestParams["userWalletAddress"] = params.UserWalletAddress
-	}
-	if params.SwapReceiverAddress != "" {
-		requestParams["swapReceiverAddress"] = params.SwapReceiverAddress
-	}
-	if params.FeePercent != "" {
-		requestParams["feePercent"] = params.FeePercent
-	}
-	if params.FromTokenReferrerWalletAddress != "" {
-		requestParams["fromTokenReferrerWalletAddress"] = params.FromTokenReferrerWalletAddress
-	}
-	if params.ToTokenReferrerWalletAddress != "" {
-		requestParams["toTokenReferrerWalletAddress"] = params.ToTokenReferrerWalletAddress
-	}
-	if params.PositiveSlippagePercent != "" {
-		requestParams["positiveSlippagePercent"] = params.PositiveSlippagePercent
-	}
-	if params.PositiveSlippageFeeAddress != "" {
-		requestParams["positiveSlippageFeeAddress"] = params.PositiveSlippageFeeAddress
-	}
-	if params.DexIds != "" {
-		requestParams["dexIds"] = params.DexIds
-	}
-	if params.ExcludeDexIds != "" {
-		requestParams["excludeDexIds"] = params.ExcludeDexIds
-	}
-	if params.DisableRFQ != "" {
-		requestParams["disableRFQ"] = params.DisableRFQ
-	}
-	requestParams["directRoute"] = params.DirectRoute
-	if params.PriceImpactProtectionPercentage != "" {
-		requestParams["priceImpactProtectionPercentage"] = params.PriceImpactProtectionPercentage
-	}
-	if params.ComputeUnitPrice != "" {
-		requestParams["computeUnitPrice"] = params.ComputeUnitPrice
-	}
-	if params.ComputeUnitLimit != "" {
-		requestParams["computeUnitLimit"] = params.ComputeUnitLimit
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/aggregator/swap-instruction",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -147,90 +47,10 @@ func (dex *DexClient) SwapInstruction(params *SwapInstructionRequest) (*SwapInst
 }
 
 func (dex *DexClient) Swap(params *SwapRequest) (*SwapResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-	if params.ChainId != "" {
-		requestParams["chainId"] = params.ChainId
-	}
-	if params.Amount != "" {
-		requestParams["amount"] = params.Amount
-	}
-	if params.SwapMode != "" {
-		requestParams["swapMode"] = params.SwapMode
-	}
-	if params.FromTokenAddress != "" {
-		requestParams["fromTokenAddress"] = params.FromTokenAddress
-	}
-	if params.ToTokenAddress != "" {
-		requestParams["toTokenAddress"] = params.ToTokenAddress
-	}
-	if params.Slippage != "" {
-		requestParams["slippage"] = params.Slippage
-	}
-	if params.UserWalletAddress != "" {
-		requestParams["userWalletAddress"] = params.UserWalletAddress
-	}
-	if params.SwapReceiverAddress != "" {
-		requestParams["swapReceiverAddress"] = params.SwapReceiverAddress
-	}
-	if params.FeePercent != "" {
-		requestParams["feePercent"] = params.FeePercent
-	}
-	if params.FromTokenReferrerWalletAddress != "" {
-		requestParams["fromTokenReferrerWalletAddress"] = params.FromTokenReferrerWalletAddress
-	}
-	if params.ToTokenReferrerWalletAddress != "" {
-		requestParams["toTokenReferrerWalletAddress"] = params.ToTokenReferrerWalletAddress
-	}
-	if params.PositiveSlippagePercent != "" {
-		requestParams["positiveSlippagePercent"] = params.PositiveSlippagePercent
-	}
-	if params.PositiveSlippageFeeAddress != "" {
-		requestParams["positiveSlippageFeeAddress"] = params.PositiveSlippageFeeAddress
-	}
-	if params.Gaslimit != "" {
-		requestParams["gaslimit"] = params.Gaslimit
-	}
-	if params.GasLevel != "" {
-		requestParams["gasLevel"] = params.GasLevel
-	}
-	if params.DexIds != "" {
-		requestParams["dexIds"] = params.DexIds
-	}
-	requestParams["directRoute"] = params.DirectRoute
-	if params.CallDataMemo != "" {
-		requestParams["callDataMemo"] = params.CallDataMemo
-	}
-	if params.ComputeUnitPrice != "" {
-		requestParams["computeUnitPrice"] = params.ComputeUnitPrice
-	}
-	if params.ComputeUnitLimit != "" {
-		requestParams["computeUnitLimit"] = params.ComputeUnitLimit
-	}
-	if params.Tips != "" {
-		requestParams["tips"] = params.Tips
-	}
-	if params.ExcludeDexIds != "" {
-		requestParams["excludeDexIds"] = params.ExcludeDexIds
-	}
-	if params.DisableRFQ != "" {
-		requestParams["disableRFQ"] = params.DisableRFQ
-	}
-	if params.PriceImpactProtectionPercentage != "" {
-		requestParams["priceImpactProtectionPercentage"] = params.PriceImpactProtectionPercentage
-	}
-	requestParams["autoSlippage"] = params.AutoSlippage
-	if params.MaxAutoSlippage != "" {
-		requestParams["maxAutoSlippage"] = params.MaxAutoSlippage
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/aggregator/swap",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -243,16 +63,10 @@ func (dex *DexClient) Swap(params *SwapRequest) (*SwapResponse, error) {
 }
 
 func (dex *DexClient) GasPrice(params *GasPriceRequest) (*GasPriceResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
-		Endpoint: "/api/v5/dex/pre-transaction/gas-price",
-		Params:   requestParams,
+		Endpoint: "/api/v6/dex/pre-transaction/gas-price",
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -281,22 +95,10 @@ func (dex *DexClient) CurrentPrice(payload []*CurrentPriceRequest) ([]*CurrentPr
 }
 
 func (dex *DexClient) AllTokenBalanceByAddress(params *AllTokenBalanceByAddressRequest) (*AllTokenBalanceByAddressResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.Address != "" {
-		requestParams["address"] = params.Address
-	}
-	if params.Chains != "" {
-		requestParams["chains"] = params.Chains
-	}
-	if params.ExcludeRiskToken != "" {
-		requestParams["excludeRiskToken"] = params.ExcludeRiskToken
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/balance/all-token-balances-by-address",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -325,34 +127,11 @@ func (dex *DexClient) TokenBalanceByAddress(payload *TokenBalanceByAddressReques
 }
 
 func (dex *DexClient) TransactionByAddress(params *TransactionByAddressRequest) (*TransactionByAddressResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.Address != "" {
-		requestParams["address"] = params.Address
-	}
-	if params.Chains != "" {
-		requestParams["chains"] = params.Chains
-	}
-	if params.TokenContractAddress != "" {
-		requestParams["tokenContractAddress"] = params.TokenContractAddress
-	}
-	if params.Begin != "" {
-		requestParams["begin"] = params.Begin
-	}
-	if params.End != "" {
-		requestParams["end"] = params.End
-	}
-	if params.Cursor != "" {
-		requestParams["cursor"] = params.Cursor
-	}
-	if params.Limit != "" {
-		requestParams["limit"] = params.Limit
-	}
-
+	fmt.Println(params.ToMap()["chains"])
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/post-transaction/transactions-by-address",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -365,19 +144,10 @@ func (dex *DexClient) TransactionByAddress(params *TransactionByAddressRequest) 
 }
 
 func (dex *DexClient) MarketTokenSearch(params *MarketTokenSearchRequest) ([]*MarketTokenSearchResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.Chains != "" {
-		requestParams["chains"] = params.Chains
-	}
-	if params.Search != "" {
-		requestParams["search"] = params.Search
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/market/token/search",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -410,22 +180,10 @@ func (dex *DexClient) MarketPriceInfo(payload []*MarketPriceInfoRequest) ([]*Mar
 }
 
 func (dex *DexClient) MarketTokenToplist(params *MarketTokenToplistRequest) ([]*MarketTokenToplistResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.Chains != "" {
-		requestParams["chains"] = params.Chains
-	}
-	if params.SortBy != "" {
-		requestParams["sortBy"] = params.SortBy
-	}
-	if params.TimeFrame != "" {
-		requestParams["timeFrame"] = params.TimeFrame
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/market/token/toplist",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
@@ -434,19 +192,10 @@ func (dex *DexClient) MarketTokenToplist(params *MarketTokenToplistRequest) ([]*
 }
 
 func (dex *DexClient) MarketTokenHolder(params *MarketTokenHolderRequest) ([]*MarketTokenHolderResponse, error) {
-	requestParams := map[string]any{}
-
-	if params.ChainIndex != "" {
-		requestParams["chainIndex"] = params.ChainIndex
-	}
-	if params.TokenContractAddress != "" {
-		requestParams["tokenContractAddress"] = params.TokenContractAddress
-	}
-
 	req, err := dex.prepareRequest(RequestParameters{
 		Method:   GET,
 		Endpoint: "/api/v6/dex/market/token/holder",
-		Params:   requestParams,
+		Params:   params.ToMap(),
 	})
 	if err != nil {
 		return nil, err
