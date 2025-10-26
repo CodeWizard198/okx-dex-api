@@ -16,7 +16,7 @@ func (dex *DexClient) ApproveTransaction(params *ApproveTransactionRequest) (*Ap
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -35,7 +35,7 @@ func (dex *DexClient) Quote(params *QuoteRequest) (*QuoteResponse, error) {
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -66,7 +66,7 @@ func (dex *DexClient) Swap(params *SwapRequest) (*SwapResponse, error) {
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -85,7 +85,7 @@ func (dex *DexClient) GasPrice(params *GasPriceRequest) (*GasPriceResponse, erro
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -120,7 +120,7 @@ func (dex *DexClient) AllTokenBalanceByAddress(params *AllTokenBalanceByAddressR
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -139,7 +139,7 @@ func (dex *DexClient) TokenBalanceByAddress(payload *TokenBalanceByAddressReques
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
@@ -159,7 +159,7 @@ func (dex *DexClient) TransactionByAddress(params *TransactionByAddressRequest) 
 		return nil, err
 	}
 	if len(data) == 0 {
-		return nil, fmt.Errorf("empty response")
+		return nil, nil
 	}
 	return data[0], nil
 }
