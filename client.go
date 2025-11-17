@@ -11,6 +11,8 @@ import (
 	"net/url"
 	"strings"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
 type (
@@ -56,7 +58,7 @@ func NewDexClient(conf *DexConfig, httpClient ...*http.Client) *DexClient {
 	} else {
 		client = httpClient[0]
 	}
-	
+
 	return &DexClient{
 		httpClient: client,
 		config:     conf,
@@ -74,7 +76,7 @@ func (dex *DexClient) prepareRequest(requestParams RequestParameters) (*http.Req
 	if requestParams.Body != nil {
 		bodyBytes, err = json.Marshal(requestParams.Body)
 		if err != nil {
-			return nil, fmt.Errorf("marshal request body failed: %w", err)
+			return nil, errors.WithMessage(err, "marshal request body failed")
 		}
 		bodyString = string(bodyBytes)
 	}
@@ -93,7 +95,7 @@ func (dex *DexClient) prepareRequest(requestParams RequestParameters) (*http.Req
 	}
 
 	if err != nil {
-		return nil, fmt.Errorf("create http request failed: %w", err)
+		return nil, errors.WithMessage(err, "create http request failed")
 	}
 
 	timestamp := time.Now().UTC().Format(time.RFC3339)
